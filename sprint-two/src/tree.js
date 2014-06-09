@@ -1,21 +1,31 @@
 var makeTree = function(value){
   var newTree = {};
   newTree.value = value;
-  newTree.children = undefined;
+  newTree.children = [];
+  _.extend(newTree, treeMethods);
   return newTree;
 };
 
 
 
 
-var treeMethods = {};
+var treeMethods = {
+	addChild: function() {},
+	contains: function() {}
+};
 
 treeMethods.addChild = function(value){
-
+	this.children.push(makeTree(value));
 };
 
 treeMethods.contains = function(target){
+  if (this.value === target) { return true; }
 
+  for(var i = 0; i < this.children.length; i++) {
+    if (this.children[i].contains(target)) { return true; }
+  }
+  
+  return false;
 };
 
 
