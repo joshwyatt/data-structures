@@ -69,6 +69,17 @@ define([
         expect(stack.pop()).to.equal('b');
       });
 
+      it('tests its speed', function() {
+        for (var i = 0; i < 75000; i++) {
+          stack.push(i);
+        }
+        for (var i = 75000; i > 0; i--) {
+          stack.pop(i);
+        }
+        expect(stack.size()).to.equal(0);
+      }
+      );
+
     });
 
     describe('stack-specific behavior', function(){
